@@ -1,0 +1,18 @@
+{
+  "features": [
+    "u_prior_acks_same_cat",
+    "u_prior_acks",
+    "u_prior_fwds",
+    "depth",
+    "arr_know_someone"
+  ],
+  "coef": [
+    2.771906081892116,
+    -0.29805350269918324,
+    -0.4367497078173044,
+    0.06854956821346198,
+    1.35998653382201
+  ],
+  "intercept": -0.2748187211199236,
+  "source": "YOROSIX pipeline bdt_decisions.csv (SYNTHETIC)"
+}

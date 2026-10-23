@@ -1,0 +1,702 @@
+{
+ "sim_seconds": 300.0,
+ "seeds": 10,
+ "summary": {
+  "broadcast": {
+   "resolved_rate": [
+    0.9040000000000001,
+    0.022000000000000016
+   ],
+   "mean_time_to_help_s": [
+    3.498845671872349,
+    0.15509658005893476
+   ],
+   "sends": [
+    576.1,
+    21.7
+   ],
+   "wasted_msgs_per_resolved": [
+    4.950164108355084,
+    0.21636544629065593
+   ],
+   "wasted_travel_m": [
+    347.4082366073641,
+    41.539863350388984
+   ],
+   "distance_total_m": [
+    2312.9905759444273,
+    107.05254306527097
+   ],
+   "blocked": [
+    24.3,
+    1.004987562112089
+   ],
+   "unsafe": [
+    0.7,
+    1.004987562112089
+   ],
+   "requests": [
+    100.0,
+    0.0
+   ]
+  },
+  "random": {
+   "resolved_rate": [
+    0.6910000000000001,
+    0.044147480109288234
+   ],
+   "mean_time_to_help_s": [
+    4.556310633162007,
+    0.3440082748654909
+   ],
+   "sends": [
+    235.1,
+    14.969635934116766
+   ],
+   "wasted_msgs_per_resolved": [
+    2.661989450447784,
+    0.38158008106202906
+   ],
+   "wasted_travel_m": [
+    0.0,
+    0.0
+   ],
+   "distance_total_m": [
+    1409.70038637684,
+    74.34759492402283
+   ],
+   "blocked": [
+    24.9,
+    0.3
+   ],
+   "unsafe": [
+    0.1,
+    0.30000000000000004
+   ],
+   "requests": [
+    100.0,
+    0.0
+   ]
+  },
+  "learned": {
+   "resolved_rate": [
+    0.967,
+    0.02451530134426252
+   ],
+   "mean_time_to_help_s": [
+    4.334124096731183,
+    0.19641573798019335
+   ],
+   "sends": [
+    111.1,
+    8.030566605165541
+   ],
+   "wasted_msgs_per_resolved": [
+    0.3211296552677357,
+    0.1143066954867993
+   ],
+   "wasted_travel_m": [
+    0.0,
+    0.0
+   ],
+   "distance_total_m": [
+    1940.392825517199,
+    89.66462750393814
+   ],
+   "blocked": [
+    24.5,
+    0.5
+   ],
+   "unsafe": [
+    0.5,
+    0.5
+   ],
+   "requests": [
+    100.0,
+    0.0
+   ]
+  },
+  "peer_check_on": {
+   "blocked": [
+    24.5,
+    0.5
+   ],
+   "unsafe": [
+    0.5,
+    0.5
+   ]
+  },
+  "peer_check_off": {
+   "blocked": [
+    0.0,
+    0.0
+   ],
+   "unsafe": [
+    25.0,
+    0.0
+   ]
+  }
+ },
+ "runs": [
+  {
+   "policy": "broadcast",
+   "peer_check": true,
+   "seed": 0,
+   "resolved_rate": 0.93,
+   "mean_time_to_help_s": 3.487849462364137,
+   "sends": 588,
+   "wasted_msgs_per_resolved": 4.849462365591398,
+   "wasted_travel_m": 378.2154347447129,
+   "distance_total_m": 2462.756283918029,
+   "blocked": 24,
+   "unsafe": 1,
+   "requests": 100
+  },
+  {
+   "policy": "broadcast",
+   "peer_check": true,
+   "seed": 1,
+   "resolved_rate": 0.89,
+   "mean_time_to_help_s": 3.5360674157287617,
+   "sends": 616,
+   "wasted_msgs_per_resolved": 5.382022471910112,
+   "wasted_travel_m": 368.31604052952747,
+   "distance_total_m": 2358.0071591658725,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "broadcast",
+   "peer_check": true,
+   "seed": 2,
+   "resolved_rate": 0.92,
+   "mean_time_to_help_s": 3.3781521739115554,
+   "sends": 553,
+   "wasted_msgs_per_resolved": 4.630434782608695,
+   "wasted_travel_m": 354.1456460153562,
+   "distance_total_m": 2327.702521139814,
+   "blocked": 24,
+   "unsafe": 1,
+   "requests": 100
+  },
+  {
+   "policy": "broadcast",
+   "peer_check": true,
+   "seed": 3,
+   "resolved_rate": 0.9,
+   "mean_time_to_help_s": 3.1214444444430898,
+   "sends": 546,
+   "wasted_msgs_per_resolved": 4.688888888888889,
+   "wasted_travel_m": 309.8459246392164,
+   "distance_total_m": 2185.4735790635823,
+   "blocked": 23,
+   "unsafe": 2,
+   "requests": 100
+  },
+  {
+   "policy": "broadcast",
+   "peer_check": true,
+   "seed": 4,
+   "resolved_rate": 0.9,
+   "mean_time_to_help_s": 3.6699999999984247,
+   "sends": 567,
+   "wasted_msgs_per_resolved": 5.011111111111111,
+   "wasted_travel_m": 275.309524641312,
+   "distance_total_m": 2197.4269196449623,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "broadcast",
+   "peer_check": true,
+   "seed": 5,
+   "resolved_rate": 0.91,
+   "mean_time_to_help_s": 3.4548351648335807,
+   "sends": 574,
+   "wasted_msgs_per_resolved": 4.868131868131868,
+   "wasted_travel_m": 364.3109148521938,
+   "distance_total_m": 2312.8481350655998,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "broadcast",
+   "peer_check": true,
+   "seed": 6,
+   "resolved_rate": 0.85,
+   "mean_time_to_help_s": 3.6510588235281154,
+   "sends": 560,
+   "wasted_msgs_per_resolved": 5.223529411764706,
+   "wasted_travel_m": 339.40573359904675,
+   "distance_total_m": 2227.690167389568,
+   "blocked": 22,
+   "unsafe": 3,
+   "requests": 100
+  },
+  {
+   "policy": "broadcast",
+   "peer_check": true,
+   "seed": 7,
+   "resolved_rate": 0.9,
+   "mean_time_to_help_s": 3.514555555554212,
+   "sends": 581,
+   "wasted_msgs_per_resolved": 5.044444444444444,
+   "wasted_travel_m": 328.2929875464489,
+   "distance_total_m": 2230.7674058892053,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "broadcast",
+   "peer_check": true,
+   "seed": 8,
+   "resolved_rate": 0.93,
+   "mean_time_to_help_s": 3.5105376344071324,
+   "sends": 609,
+   "wasted_msgs_per_resolved": 4.935483870967742,
+   "wasted_travel_m": 435.6234299378395,
+   "distance_total_m": 2527.6916028681744,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "broadcast",
+   "peer_check": true,
+   "seed": 9,
+   "resolved_rate": 0.91,
+   "mean_time_to_help_s": 3.6639560439544794,
+   "sends": 567,
+   "wasted_msgs_per_resolved": 4.868131868131868,
+   "wasted_travel_m": 320.6167295679875,
+   "distance_total_m": 2299.5419852994683,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "random",
+   "peer_check": true,
+   "seed": 0,
+   "resolved_rate": 0.73,
+   "mean_time_to_help_s": 4.481506849313054,
+   "sends": 226,
+   "wasted_msgs_per_resolved": 2.3698630136986303,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1367.0975874222654,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "random",
+   "peer_check": true,
+   "seed": 1,
+   "resolved_rate": 0.68,
+   "mean_time_to_help_s": 4.240441176468687,
+   "sends": 235,
+   "wasted_msgs_per_resolved": 2.7205882352941178,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1293.6714841919916,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "random",
+   "peer_check": true,
+   "seed": 2,
+   "resolved_rate": 0.7,
+   "mean_time_to_help_s": 5.308999999997997,
+   "sends": 242,
+   "wasted_msgs_per_resolved": 2.657142857142857,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1519.6876785325246,
+   "blocked": 24,
+   "unsafe": 1,
+   "requests": 100
+  },
+  {
+   "policy": "random",
+   "peer_check": true,
+   "seed": 3,
+   "resolved_rate": 0.7,
+   "mean_time_to_help_s": 4.377142857140585,
+   "sends": 232,
+   "wasted_msgs_per_resolved": 2.5285714285714285,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1296.6951534761536,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "random",
+   "peer_check": true,
+   "seed": 4,
+   "resolved_rate": 0.65,
+   "mean_time_to_help_s": 4.731538461536479,
+   "sends": 251,
+   "wasted_msgs_per_resolved": 3.0307692307692307,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1527.140744395377,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "random",
+   "peer_check": true,
+   "seed": 5,
+   "resolved_rate": 0.7,
+   "mean_time_to_help_s": 4.365571428569608,
+   "sends": 231,
+   "wasted_msgs_per_resolved": 2.557142857142857,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1437.5125875263584,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "random",
+   "peer_check": true,
+   "seed": 6,
+   "resolved_rate": 0.68,
+   "mean_time_to_help_s": 4.536470588233417,
+   "sends": 233,
+   "wasted_msgs_per_resolved": 2.6470588235294117,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1428.4132640771932,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "random",
+   "peer_check": true,
+   "seed": 7,
+   "resolved_rate": 0.66,
+   "mean_time_to_help_s": 4.43060606060418,
+   "sends": 254,
+   "wasted_msgs_per_resolved": 3.121212121212121,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1397.3714451401656,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "random",
+   "peer_check": true,
+   "seed": 8,
+   "resolved_rate": 0.62,
+   "mean_time_to_help_s": 4.990322580643652,
+   "sends": 248,
+   "wasted_msgs_per_resolved": 3.1774193548387095,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1412.207496249355,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "random",
+   "peer_check": true,
+   "seed": 9,
+   "resolved_rate": 0.79,
+   "mean_time_to_help_s": 4.100506329112416,
+   "sends": 199,
+   "wasted_msgs_per_resolved": 1.8101265822784811,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1417.206422757015,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": true,
+   "seed": 0,
+   "resolved_rate": 0.98,
+   "mean_time_to_help_s": 4.409489795916527,
+   "sends": 106,
+   "wasted_msgs_per_resolved": 0.20408163265306123,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 2112.5352846077353,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": true,
+   "seed": 1,
+   "resolved_rate": 0.98,
+   "mean_time_to_help_s": 4.185714285712552,
+   "sends": 105,
+   "wasted_msgs_per_resolved": 0.22448979591836735,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1984.1474693874084,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": true,
+   "seed": 2,
+   "resolved_rate": 0.98,
+   "mean_time_to_help_s": 4.521326530610351,
+   "sends": 116,
+   "wasted_msgs_per_resolved": 0.3163265306122449,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1967.5251827557572,
+   "blocked": 24,
+   "unsafe": 1,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": true,
+   "seed": 3,
+   "resolved_rate": 0.97,
+   "mean_time_to_help_s": 4.2014432989672885,
+   "sends": 114,
+   "wasted_msgs_per_resolved": 0.4020618556701031,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1871.5267258780498,
+   "blocked": 24,
+   "unsafe": 1,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": true,
+   "seed": 4,
+   "resolved_rate": 0.95,
+   "mean_time_to_help_s": 4.328421052629739,
+   "sends": 117,
+   "wasted_msgs_per_resolved": 0.4421052631578947,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1912.649230542448,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": true,
+   "seed": 5,
+   "resolved_rate": 1.0,
+   "mean_time_to_help_s": 4.088199999998156,
+   "sends": 103,
+   "wasted_msgs_per_resolved": 0.19,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1823.292563338574,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": true,
+   "seed": 6,
+   "resolved_rate": 0.91,
+   "mean_time_to_help_s": 4.464835164833545,
+   "sends": 125,
+   "wasted_msgs_per_resolved": 0.5384615384615384,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1794.8936804307828,
+   "blocked": 24,
+   "unsafe": 1,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": true,
+   "seed": 7,
+   "resolved_rate": 0.96,
+   "mean_time_to_help_s": 4.4896874999981184,
+   "sends": 116,
+   "wasted_msgs_per_resolved": 0.3645833333333333,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1933.9782945715265,
+   "blocked": 24,
+   "unsafe": 1,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": true,
+   "seed": 8,
+   "resolved_rate": 0.99,
+   "mean_time_to_help_s": 4.007070707068868,
+   "sends": 96,
+   "wasted_msgs_per_resolved": 0.18181818181818182,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1992.6548907998576,
+   "blocked": 24,
+   "unsafe": 1,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": true,
+   "seed": 9,
+   "resolved_rate": 0.95,
+   "mean_time_to_help_s": 4.645052631576685,
+   "sends": 113,
+   "wasted_msgs_per_resolved": 0.3473684210526316,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 2010.7249328598514,
+   "blocked": 25,
+   "unsafe": 0,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": false,
+   "seed": 0,
+   "resolved_rate": 0.98,
+   "mean_time_to_help_s": 4.441326530610372,
+   "sends": 106,
+   "wasted_msgs_per_resolved": 0.20408163265306123,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 2214.740038633932,
+   "blocked": 0,
+   "unsafe": 25,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": false,
+   "seed": 1,
+   "resolved_rate": 0.98,
+   "mean_time_to_help_s": 4.1886734693860195,
+   "sends": 105,
+   "wasted_msgs_per_resolved": 0.22448979591836735,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 2083.634741507727,
+   "blocked": 0,
+   "unsafe": 25,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": false,
+   "seed": 2,
+   "resolved_rate": 0.98,
+   "mean_time_to_help_s": 4.523979591834842,
+   "sends": 116,
+   "wasted_msgs_per_resolved": 0.3163265306122449,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 2055.5696080495527,
+   "blocked": 0,
+   "unsafe": 25,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": false,
+   "seed": 3,
+   "resolved_rate": 0.97,
+   "mean_time_to_help_s": 4.302371134018751,
+   "sends": 115,
+   "wasted_msgs_per_resolved": 0.4020618556701031,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1974.9718817936007,
+   "blocked": 0,
+   "unsafe": 25,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": false,
+   "seed": 4,
+   "resolved_rate": 0.95,
+   "mean_time_to_help_s": 4.330421052629778,
+   "sends": 115,
+   "wasted_msgs_per_resolved": 0.42105263157894735,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 2009.5938948099488,
+   "blocked": 0,
+   "unsafe": 25,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": false,
+   "seed": 5,
+   "resolved_rate": 1.0,
+   "mean_time_to_help_s": 4.143999999998125,
+   "sends": 104,
+   "wasted_msgs_per_resolved": 0.2,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1923.3863487787066,
+   "blocked": 0,
+   "unsafe": 25,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": false,
+   "seed": 6,
+   "resolved_rate": 0.92,
+   "mean_time_to_help_s": 4.342282608694117,
+   "sends": 124,
+   "wasted_msgs_per_resolved": 0.5,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 1888.3933184427672,
+   "blocked": 0,
+   "unsafe": 25,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": false,
+   "seed": 7,
+   "resolved_rate": 0.96,
+   "mean_time_to_help_s": 4.440937499998063,
+   "sends": 118,
+   "wasted_msgs_per_resolved": 0.40625,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 2002.7764262740382,
+   "blocked": 0,
+   "unsafe": 25,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": false,
+   "seed": 8,
+   "resolved_rate": 0.98,
+   "mean_time_to_help_s": 4.040714285712549,
+   "sends": 99,
+   "wasted_msgs_per_resolved": 0.22448979591836735,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 2079.768411731445,
+   "blocked": 0,
+   "unsafe": 25,
+   "requests": 100
+  },
+  {
+   "policy": "learned",
+   "peer_check": false,
+   "seed": 9,
+   "resolved_rate": 0.96,
+   "mean_time_to_help_s": 4.54708333333115,
+   "sends": 109,
+   "wasted_msgs_per_resolved": 0.3020833333333333,
+   "wasted_travel_m": 0.0,
+   "distance_total_m": 2084.4891174701684,
+   "blocked": 0,
+   "unsafe": 25,
+   "requests": 100
+  }
+ ]
+}
