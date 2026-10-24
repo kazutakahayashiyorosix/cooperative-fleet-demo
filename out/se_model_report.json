@@ -1,0 +1,21 @@
+{
+ "rows": 918525,
+ "positives": 19367,
+ "test_rows": 183705,
+ "test_auc": 0.936541542089535,
+ "test_auc_total_only": 0.9231631233950288,
+ "test_auc_same_cat_only": 0.922367662112379,
+ "top1_hit_rate": {
+  "model": 0.667465261140393,
+  "most_active": 0.6190704360325826,
+  "random": 0.048394825107810256
+ },
+ "questions_scored": 4174,
+ "source": "Stack Exchange data dump robotics_stackexchange_com.7z (real human help-giving, CC BY-SA 4.0), label=answer",
+ "questions": 45274,
+ "answers": 22450,
+ "coef": {
+  "u_prior_acks_same_cat": 0.34012663746537225,
+  "u_prior_acks": 0.8614657200296967
+ }
+}

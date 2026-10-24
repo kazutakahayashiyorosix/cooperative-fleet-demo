@@ -1,0 +1,12 @@
+{
+ "features": [
+  "u_prior_acks_same_cat",
+  "u_prior_acks"
+ ],
+ "coef": [
+  0.34012663746537225,
+  0.8614657200296967
+ ],
+ "intercept": -2.568386798933836,
+ "source": "Stack Exchange data dump robotics_stackexchange_com.7z (real human help-giving, CC BY-SA 4.0), label=answer"
+}

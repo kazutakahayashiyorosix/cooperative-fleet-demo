@@ -5,8 +5,8 @@ and pass requests on, and turns those decisions into training data for cooperati
 
 **What is real and what is simulated.** The machines, the jobs and the physics are simulated (MuJoCo).
 The routing rule can be trained on real human help-giving (a public Stack Exchange dump, see below);
-the default `help_model.json` comes from the YOROSIX pipeline on SYNTHETIC data. Status: the Stack Exchange
-training code is tested on a synthetic fixture; results on a real dump will be added here.
+the default `help_model.json` comes from the YOROSIX pipeline on SYNTHETIC data. The Stack Exchange model
+has now been trained on the real Robotics dump; results are below.
 
 The machines are simulated with physics: 2 drones (scout), 4 ground robots (2 lift, 2 fetch) and 2 cars (deliver).
 A request (a job in one category) appears in the work area and first reaches the nearest machine.
@@ -43,18 +43,19 @@ On headless Linux, prefix commands with `MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osme
 
 ## Results (10 seeds × 300 s, 100 requests each)
 
-| | broadcast | random | learned |
-|---|---|---|---|
-| Resolved | 90% | 69% | **97%** |
-| Time to help | **3.5 s** | 4.6 s | 4.3 s |
-| Messages sent | 576 | 235 | **111** |
-| Wasted travel | 347 m | 0 | **0** |
+| | broadcast | random | learned (synthetic) | **human (real Stack Exchange)** |
+|---|---|---|---|---|
+| Resolved | 90% | 69% | 97% | 86% |
+| Time to help | 3.5 s | 4.6 s | 4.3 s | 4.2 s |
+| Messages sent | 576 | 235 | 111 | 140 |
+| Wasted travel | 347 m | 0 | 0 | 0 |
 
 Peer check (learned, 25 unsafe commands): **0.5** executed with the check on, **25** with it off.
 
 **Caveats:**
 - Broadcast is faster to first arrival because the nearest machine races there. The cost is 5× the messages, wasted travel, and machines that are busy when the next job comes in.
-- The help model is trained on synthetic data. No real-data performance is claimed here.
+- `learned` uses a model trained on synthetic data. `human` uses the same rule with weights fitted to real people helping each other on Stack Exchange; it resolves slightly fewer requests than broadcast but sends a quarter of the messages and wastes no travel.
+- The human data is an online Q&A site, not physical assistance.
 - Machine dynamics are simplified: slide joints plus velocity control. This is not flight control or vehicle dynamics.
 
 ## Routing model trained on real human help-giving (Stack Exchange)
@@ -94,3 +95,11 @@ the routing model and ledger are plain Python/NumPy and move over unchanged. Thi
 - `help_model.json`: help-model coefficients (from the YOROSIX pipeline, SYNTHETIC)
 - `se_help_model.py`: trains `help_model_human.json` from a Stack Exchange dump (real human data)
 - `run_benchmark.py` / `make_video.py` / `view_live.py`
+
+### Real-dump result (robotics.stackexchange.com)
+
+45,274 questions, 22,450 answers with an author, 918,525 candidate rows; time split 80/20.
+On held-out questions the person the model ranks first actually answered **67%** of the time,
+against 62% for the most active candidate and 5% at random (4,174 questions scored).
+Weights: same-tag history 0.34, total history 0.86 (log1p features). Full report: `out/se_model_report.json`.
+`out/fleet_routing_human.mp4` shows broadcast vs the human-trained routing side by side.

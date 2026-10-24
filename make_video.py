@@ -91,7 +91,7 @@ def hud(img, sim, title, subtitle):
         col = (255, 107, 74) if (k == "unsafe" and m["unsafe"]) else (46, 196, 182)
         d.text((x, H - 24), k, font=F_S, fill=(160, 172, 180)); x += d.textlength(k, font=F_S) + 5
         d.text((x, H - 25), v, font=F_K, fill=col); x += d.textlength(v, font=F_K) + 16
-    d.text((W - 10, H - 24), f"t={sim.t:5.1f}s  SYNTHETIC", font=F_S, fill=(160, 172, 180), anchor="ra")
+    d.text((W - 10, H - 24), f"t={sim.t:5.1f}s  " + ("SIMULATION" if "human" in os.environ.get("HELP_MODEL", "") else "SYNTHETIC"), font=F_S, fill=(160, 172, 180), anchor="ra")
     y = 52
     for t, msg in sim.ticker[:4]:
         a = int(255 * max(0.35, 1 - (sim.t - t) / 8))
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     seed = int(os.environ.get("SEED", 3))
     if which == "routing":
         render([(dict(policy="broadcast", seed=seed), "Broadcast to everyone", "every able machine races; losers turn back"),
-                (dict(policy="learned", seed=seed), "YOROSIX learned routing", "pass to the machine the help model ranks first")],
+                (dict(policy="learned", seed=seed), ("Learned from real human help" if "human" in os.environ.get("HELP_MODEL", "") else "YOROSIX learned routing"), "pass to the machine the help model ranks first")],
                os.path.join(HERE, "out", "fleet_routing.mp4"))
     else:
         render([(dict(policy="learned", peer_check=False, seed=seed, unsafe_every=7.0), "Peer check OFF", "unsafe command goes through"),
