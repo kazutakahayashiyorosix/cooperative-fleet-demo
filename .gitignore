@@ -4,3 +4,5 @@ out/fixture*
 out/help_model_fixture.json
 *.7z
 Posts.xml
+ral/*.log
+ral/__pycache__/
