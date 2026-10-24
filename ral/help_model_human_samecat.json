@@ -1,0 +1,10 @@
+{
+ "features": [
+  "u_prior_acks_same_cat"
+ ],
+ "coef": [
+  1.1664112211871325
+ ],
+ "intercept": -1.3587862650289855,
+ "source": "Stack Exchange robotics dump, single feature u_prior_acks_same_cat"
+}
