@@ -1,0 +1,11 @@
+{
+ "issues_with_handoff": 28814,
+ "closed7_if_target_responded": 0.395,
+ "closed7_if_not": 0.287,
+ "within_repo_n_repos": 1901,
+ "within_repo_mean_diff": 0.093,
+ "within_repo_CI95": [
+  0.068,
+  0.117
+ ]
+}

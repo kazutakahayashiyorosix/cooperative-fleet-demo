@@ -31,7 +31,8 @@ KEYS = ["requests", "resolved_rate", "mean_time_to_help_s", "sends", "bids", "wa
 def run(job):
     exp, pol, per_skill, frac, checker, seed = job[:6]
     comp = job[6] if len(job) > 6 else None
-    policy = "learned_prox" if pol in ("human_prox", "human_avail_prox") else ("learned" if pol.startswith("human") else pol)
+    policy = ("learned_prox" if pol in ("human_prox", "human_avail_prox") else
+              "learned_handoff" if pol.startswith("handoff") else ("learned" if pol.startswith("human") else pol))
     s = FleetSim(policy, peer_check=True, seed=seed, model_path=MODELS.get(pol, MODELS["human"]),
                  per_skill=per_skill, frac_unreliable=frac, checker=checker,
                  request_every=3.0 * 2 / per_skill, unsafe_every=(4.0 if exp.startswith("E3") else 12.0),
@@ -61,6 +62,15 @@ def jobs_avail():
     for frac, pol, sd in itertools.product([0.0, 0.3, 0.5], ["human_avail", "human_avail_prox"], SEEDS):
         J.append(("E1", pol, 6, frac, "trusted", sd))
     for per, pol, sd in itertools.product([2, 6, 12], ["human_avail", "human_avail_prox"], SEEDS):
+        J.append(("E2", pol, per, 0.3, "trusted", sd))
+    return J
+
+
+def jobs_handoff():
+    J = []
+    for frac, pol, sd in itertools.product([0.0, 0.3, 0.5], ["handoff"], SEEDS):
+        J.append(("E1", pol, 6, frac, "trusted", sd))
+    for per, pol, sd in itertools.product([2, 6, 12], ["handoff"], SEEDS):
         J.append(("E2", pol, per, 0.3, "trusted", sd))
     return J
 
@@ -95,11 +105,11 @@ def summarise(rows):
 
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else ""
-    extra = mode in ("extra", "avail")
-    J = {"extra": jobs_extra, "avail": jobs_avail}.get(mode, jobs)()
+    extra = mode in ("extra", "avail", "handoff")
+    J = {"extra": jobs_extra, "avail": jobs_avail, "handoff": jobs_handoff}.get(mode, jobs)()
     with Pool() as p:
         rows = p.map(run, J, chunksize=2)
     os.makedirs(os.path.join(HERE, "results"), exist_ok=True)
-    out = os.path.join(HERE, "results", {"extra": "ral_extra.json", "avail": "ral_avail.json"}.get(mode, "ral.json"))
+    out = os.path.join(HERE, "results", {"extra": "ral_extra.json", "avail": "ral_avail.json", "handoff": "ral_handoff.json"}.get(mode, "ral.json"))
     json.dump(dict(sim_seconds=SIM_S, seeds=len(SEEDS), summary=summarise(rows), runs=rows), open(out, "w"), indent=1)
     print("done", len(rows))

@@ -1,0 +1,61 @@
+{
+ "n_train": 67967,
+ "n_test": 30113,
+ "base_rate_test": 0.20007969979742968,
+ "answers only (like Stack Exchange)": {
+  "auc": 0.717,
+  "coef": {
+   "f_repo": 0.026,
+   "f_tot": 0.46
+  }
+ },
+ "handoff history only": {
+  "auc": 0.678,
+  "coef": {
+   "f_hto": -0.701,
+   "f_hresp": 1.574,
+   "f_rate": -0.045
+  }
+ },
+ "answers + handoff history": {
+  "auc": 0.749,
+  "coef": {
+   "f_repo": 0.084,
+   "f_tot": 0.471,
+   "f_hto": -0.78,
+   "f_hresp": 0.724,
+   "f_rate": 0.414
+  }
+ },
+ "auc_gain_CI95": [
+  0.027,
+  0.035
+ ],
+ "test_share_with_prior_handoffs": 0.556,
+ "auc_on_prior_handoff_targets": {
+  "answers": 0.769,
+  "plus_handoff": 0.8
+ },
+ "resp_rate_by_prior_rate": [
+  [
+   "(0.0, 0.2]",
+   "0.044",
+   "17196"
+  ],
+  [
+   "(0.2, 0.4]",
+   "0.297",
+   "4516"
+  ],
+  [
+   "(0.4, 0.6]",
+   "0.403",
+   "3166"
+  ],
+  [
+   "(0.6, 1.01]",
+   "0.571",
+   "1814"
+  ]
+ ]
+}

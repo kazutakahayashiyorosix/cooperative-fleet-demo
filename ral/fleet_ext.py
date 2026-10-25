@@ -165,6 +165,8 @@ class Ledger:
     acks: dict = field(default_factory=dict)
     total: dict = field(default_factory=dict)
     fwds: dict = field(default_factory=dict)
+    hto: dict = field(default_factory=dict)    # times a request was passed to this machine (handoffs received)
+    hresp: dict = field(default_factory=dict)  # of those, times it took the request
 
     def ack(self, i, cat):
         self.acks[(i, cat)] = self.acks.get((i, cat), 0) + 1
@@ -197,7 +199,8 @@ class Job:
 class FleetSim:
     def __init__(self, policy="learned", peer_check=True, seed=0, request_every=3.0,
                  unsafe_every=12.0, model_path=None, per_skill=2, frac_unreliable=0.0,
-                 p_accept_unreliable=0.2, checker="trusted", frac_compromised=None, prox_scale=5.0, avail=False):
+                 p_accept_unreliable=0.2, checker="trusted", frac_compromised=None, prox_scale=5.0, avail=False, w_hto=-0.871, w_hresp=0.858):
+        self.w_hto, self.w_hresp = w_hto, w_hresp
         self.avail = avail   # busy/free status posted to the public ledger; router skips busy machines
         fleet = make_fleet(per_skill, seed)
         self.fleet = fleet
@@ -298,7 +301,12 @@ class FleetSim:
     def arrive(self, job, a, depth, entry_hop=False, last_sender=None):
         if job.stage != "open":
             return
-        if self.willing(a, job):
+        w = self.willing(a, job)
+        if last_sender is not None:                      # a handoff: record whether it was taken
+            self.ledger.hto[a.i] = self.ledger.hto.get(a.i, 0) + 1
+            if w:
+                self.ledger.hresp[a.i] = self.ledger.hresp.get(a.i, 0) + 1
+        if w:
             if last_sender is not None:
                 self.stats["effective"] += 1
             self.take(job, a); return
@@ -333,6 +341,16 @@ class FleetSim:
             self.log(f"{a.name} DROP Q{job.jid:03d}"); return
         if self.policy == "random":
             nxt = cands[int(self.rng.integers(len(cands)))]
+        elif self.policy == "learned_handoff":
+            # human ledger score plus handoff history, weights for handoff terms fitted on GitHub @-mention handoffs
+            def lg(o):
+                p = self.help.score(self.ledger.acks.get((o.i, job.cat), 0), self.ledger.total.get(o.i, 0),
+                                    self.ledger.fwds.get(o.i, 0), depth + 1)
+                z = math.log(p / (1 - p)) + self.w_hto * math.log1p(self.ledger.hto.get(o.i, 0)) \
+                    + self.w_hresp * math.log1p(self.ledger.hresp.get(o.i, 0))
+                return z
+            sc = [(lg(o), -np.linalg.norm(self.xy(o) - job.loc), o) for o in cands]
+            nxt = max(sc, key=lambda s: (round(s[0], 6), s[1]))[2]
         elif self.policy == "learned_prox":
             # ledger score weighted by closeness to the request
             sc = [(self.help.score(self.ledger.acks.get((o.i, job.cat), 0), self.ledger.total.get(o.i, 0),

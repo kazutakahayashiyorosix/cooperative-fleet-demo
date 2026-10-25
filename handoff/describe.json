@@ -1,0 +1,16 @@
+{
+ "rows": 4846595,
+ "comments": 2284599,
+ "issues_opened": 1507534,
+ "issues_closed": 983886,
+ "repos": 365558,
+ "issues_seen": 2221034,
+ "actors": 697532,
+ "handoffs": 161878,
+ "handoff_repos": 39287,
+ "handoff_targets": 90344,
+ "handoff_senders": 63656,
+ "resp72": 0.186,
+ "median_resp_hours": 3.8,
+ "share_targets_no_prior_comments": 0.594
+}

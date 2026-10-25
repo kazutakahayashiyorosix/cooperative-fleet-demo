@@ -75,7 +75,7 @@ with open(os.path.join(OUT, "numbers.tex"), "w") as fh:
         fh.write(f"\\newcommand{{\\{k}}}{{{v}}}\n")
 
 # ---------- figure 1: scale, figure 2: peer check
-plt.rcParams.update({"font.size": 8, "font.family": "serif"})
+plt.rcParams.update({"font.size": 8, "font.family": "serif", "pdf.fonttype": 42, "ps.fonttype": 42})
 fig, ax = plt.subplots(1, 2, figsize=(7.0, 2.3))
 ns = [8, 24, 48]
 sty = {"broadcast": ("#7f7f7f", "o", "Broadcast"), "auction": ("#1f77b4", "s", "Auction"),
