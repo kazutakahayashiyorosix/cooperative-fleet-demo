@@ -197,7 +197,8 @@ class Job:
 class FleetSim:
     def __init__(self, policy="learned", peer_check=True, seed=0, request_every=3.0,
                  unsafe_every=12.0, model_path=None, per_skill=2, frac_unreliable=0.0,
-                 p_accept_unreliable=0.2, checker="trusted", frac_compromised=None, prox_scale=5.0):
+                 p_accept_unreliable=0.2, checker="trusted", frac_compromised=None, prox_scale=5.0, avail=False):
+        self.avail = avail   # busy/free status posted to the public ledger; router skips busy machines
         fleet = make_fleet(per_skill, seed)
         self.fleet = fleet
         self.model = mujoco.MjModel.from_xml_string(build_xml(fleet))
@@ -324,6 +325,9 @@ class FleetSim:
             self.events.append((self.t + HOP_LATENCY * 2, lambda: self.check_dropped(job)))
             return
         cands = [o for o in self.agents if o is not a and o.rogue <= 0]
+        if self.avail:
+            free = [o for o in cands if o.task is None]
+            cands = free or cands
         if depth >= 4 or not cands:
             job.stage = "dropped"; self.stats["dropped"] += 1; self.release(job)
             self.log(f"{a.name} DROP Q{job.jid:03d}"); return

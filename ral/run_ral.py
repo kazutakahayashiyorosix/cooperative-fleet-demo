@@ -31,11 +31,11 @@ KEYS = ["requests", "resolved_rate", "mean_time_to_help_s", "sends", "bids", "wa
 def run(job):
     exp, pol, per_skill, frac, checker, seed = job[:6]
     comp = job[6] if len(job) > 6 else None
-    policy = "learned_prox" if pol == "human_prox" else ("learned" if pol.startswith("human") else pol)
+    policy = "learned_prox" if pol in ("human_prox", "human_avail_prox") else ("learned" if pol.startswith("human") else pol)
     s = FleetSim(policy, peer_check=True, seed=seed, model_path=MODELS.get(pol, MODELS["human"]),
                  per_skill=per_skill, frac_unreliable=frac, checker=checker,
                  request_every=3.0 * 2 / per_skill, unsafe_every=(4.0 if exp.startswith("E3") else 12.0),
-                 frac_compromised=comp)
+                 frac_compromised=comp, avail=pol.startswith("human_avail"))
     s.step(int(SIM_S / s.model.opt.timestep))
     m = s.metrics()
     return dict(exp=exp, policy=pol, n=per_skill * 4, frac=(frac if comp is None else comp), checker=checker, seed=seed,
@@ -53,6 +53,15 @@ def jobs_extra():
         J.append(("E3b", "human", 6, 0.0, chk, sd, comp))
     for comp, sd in itertools.product([0.2, 0.4, 0.6], SEEDS):
         J.append(("E3", "human", 6, comp, "two", sd))
+    return J
+
+
+def jobs_avail():
+    J = []
+    for frac, pol, sd in itertools.product([0.0, 0.3, 0.5], ["human_avail", "human_avail_prox"], SEEDS):
+        J.append(("E1", pol, 6, frac, "trusted", sd))
+    for per, pol, sd in itertools.product([2, 6, 12], ["human_avail", "human_avail_prox"], SEEDS):
+        J.append(("E2", pol, per, 0.3, "trusted", sd))
     return J
 
 
@@ -85,11 +94,12 @@ def summarise(rows):
 
 
 if __name__ == "__main__":
-    extra = len(sys.argv) > 1 and sys.argv[1] == "extra"
-    J = jobs_extra() if extra else jobs()
+    mode = sys.argv[1] if len(sys.argv) > 1 else ""
+    extra = mode in ("extra", "avail")
+    J = {"extra": jobs_extra, "avail": jobs_avail}.get(mode, jobs)()
     with Pool() as p:
         rows = p.map(run, J, chunksize=2)
     os.makedirs(os.path.join(HERE, "results"), exist_ok=True)
-    out = os.path.join(HERE, "results", "ral_extra.json" if extra else "ral.json")
+    out = os.path.join(HERE, "results", {"extra": "ral_extra.json", "avail": "ral_avail.json"}.get(mode, "ral.json"))
     json.dump(dict(sim_seconds=SIM_S, seeds=len(SEEDS), summary=summarise(rows), runs=rows), open(out, "w"), indent=1)
     print("done", len(rows))

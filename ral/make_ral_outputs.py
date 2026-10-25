@@ -9,6 +9,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.environ.get("RAL_OUT", os.path.join(HERE, "results"))
 A = json.load(open(os.path.join(HERE, "results", "ral.json")))["summary"]
 A.update(json.load(open(os.path.join(HERE, "results", "ral_extra.json")))["summary"])
+A.update(json.load(open(os.path.join(HERE, "results", "ral_avail.json")))["summary"])
 
 
 def g(exp, pol, n, frac, chk="trusted"):
@@ -25,7 +26,7 @@ def unsafe_rate(d):
 
 POL = [("broadcast", "Broadcast"), ("auction", "Auction"), ("random", "Random"),
        ("human", "Ledger (human)"), ("human_samecat", "Ledger, category only"), ("human_total", "Ledger, total only"),
-       ("human_prox", "Ledger + proximity")]
+       ("human_prox", "Ledger + proximity"), ("human_avail", "Ledger + availability")]
 
 # ---------- table: E1 at 0 and 0.3 unreliable
 rows = []
@@ -45,7 +46,7 @@ with open(os.path.join(OUT, "table_e1.tex"), "w") as fh:
 m = {}
 def put(k, v): m[k] = v
 for f, t in ((0.0, "A"), (0.3, "B"), (0.5, "C")):
-    for pol, key in (("broadcast", "Bc"), ("auction", "Au"), ("random", "Rw"), ("human", "Lg"), ("human_total", "Tot"), ("human_prox", "Px")):
+    for pol, key in (("broadcast", "Bc"), ("auction", "Au"), ("random", "Rw"), ("human", "Lg"), ("human_total", "Tot"), ("human_prox", "Px"), ("human_avail", "Av")):
         d = g("E1", pol, 24, f)
         put(f"res{key}{t}", f"{100*d['resolved_rate'][0]:.0f}")
         put(f"msg{key}{t}", f"{per_req(d,'msgs'):.1f}")
@@ -53,9 +54,12 @@ put("wasteBcA", f"{per_req(g('E1','broadcast',24,0.0),'wasted_travel_m'):.0f}")
 put("timeBcA", f"{g('E1','broadcast',24,0.0)['mean_time_to_help_s'][0]:.1f}")
 put("timeAuA", f"{g('E1','auction',24,0.0)['mean_time_to_help_s'][0]:.1f}")
 put("timeLgA", f"{g('E1','human',24,0.0)['mean_time_to_help_s'][0]:.1f}")
+put("msgRatioAvA", f"{per_req(g('E1','auction',24,0.0),'msgs')/per_req(g('E1','human_avail',24,0.0),'msgs'):.0f}")
+put("msgRatioAvStatusA", f"{per_req(g('E1','auction',24,0.0),'msgs')/(per_req(g('E1','human_avail',24,0.0),'msgs')+2*g('E1','human_avail',24,0.0)['resolved_rate'][0]):.0f}")
+put("msgAvStatusA", f"{per_req(g('E1','human_avail',24,0.0),'msgs')+2*g('E1','human_avail',24,0.0)['resolved_rate'][0]:.1f}")
 put("msgRatioA", f"{per_req(g('E1','auction',24,0.0),'msgs')/per_req(g('E1','human',24,0.0),'msgs'):.0f}")
 for n, t in ((8, "Eight"), (24, "TwentyFour"), (48, "FortyEight")):
-    for pol, key in (("broadcast", "Bc"), ("auction", "Au"), ("human", "Lg"), ("human_prox", "Px")):
+    for pol, key in (("broadcast", "Bc"), ("auction", "Au"), ("human", "Lg"), ("human_prox", "Px"), ("human_avail", "Av")):
         d = g("E2", pol, n, 0.3)
         put(f"sc{key}{t}", f"{100*d['resolved_rate'][0]:.0f}")
         put(f"scmsg{key}{t}", f"{per_req(d,'msgs'):.1f}")
@@ -75,7 +79,8 @@ plt.rcParams.update({"font.size": 8, "font.family": "serif"})
 fig, ax = plt.subplots(1, 2, figsize=(7.0, 2.3))
 ns = [8, 24, 48]
 sty = {"broadcast": ("#7f7f7f", "o", "Broadcast"), "auction": ("#1f77b4", "s", "Auction"),
-       "human": ("#d62728", "^", "Ledger (human)"), "human_prox": ("#ff7f0e", "v", "Ledger + proximity")}
+       "human": ("#d62728", "^", "Ledger (human)"), "human_prox": ("#ff7f0e", "v", "Ledger + proximity"),
+       "human_avail": ("#2ca02c", "D", "Ledger + availability")}
 for pol, (c, mk, lab) in sty.items():
     y = [100 * g("E2", pol, n, 0.3)["resolved_rate"][0] for n in ns]
     e = [100 * g("E2", pol, n, 0.3)["resolved_rate"][1] for n in ns]
